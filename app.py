@@ -20,7 +20,14 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-app = Flask(__name__)
+# 3. 프로젝트 루트 경로 및 Flask 앱 초기화
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+app = Flask(
+    __name__,
+    template_folder=os.path.join(BASE_DIR, "templates"),
+    static_folder=os.path.join(BASE_DIR, "static")
+)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "startup-checklist-security-key-2026")
 # 24시간 세션 유지 설정
 app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(hours=24)
