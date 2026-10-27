@@ -1,0 +1,17 @@
+﻿# 파이썬 가상환경
+venv/
+
+# 환경변수 및 보안 비밀키
+.env
+
+# 파이썬 실행 캐시 파일
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 에디터 및 OS 임시 파일
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

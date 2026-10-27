@@ -1,0 +1,605 @@
+﻿/* ==========================================================================
+   청년 창업 체크리스트 & 시장 진단 스타일시트 (style.css)
+   ========================================================================== */
+
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --primary-light: #eff6ff;
+    --secondary-color: #0ea5e9;
+    --success-color: #10b981;
+    --success-light: #ecfdf5;
+    --warning-color: #f59e0b;
+    --warning-light: #fffbeb;
+    --danger-color: #ef4444;
+    --danger-light: #fef2f2;
+    --purple-color: #8b5cf6;
+    --purple-light: #f5f3ff;
+    
+    --bg-page: #f8fafc;
+    --bg-card: #ffffff;
+    --border-color: #e2e8f0;
+    --border-focus: #3b82f6;
+    
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --text-inverse: #ffffff;
+    
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 20px 80px 20px;
+}
+
+/* ==========================================================================
+   헤더 영역
+   ========================================================================== */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 9999px;
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+.main-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   카드 공통 스타일
+   ========================================================================== */
+.card {
+    background-color: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    padding: 32px;
+    margin-bottom: 30px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.card-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+}
+
+/* ==========================================================================
+   폼 요소 스타일
+   ========================================================================== */
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+.col-half {
+    flex: 1;
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #334155;
+    margin-bottom: 8px;
+}
+
+.required {
+    color: var(--danger-color);
+}
+
+.form-control {
+    width: 100%;
+    padding: 13px 16px;
+    font-size: 1rem;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background-color: #ffffff;
+    color: var(--text-primary);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+.form-control:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3.5px rgba(59, 130, 246, 0.15);
+}
+
+.form-hint {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+/* 라디오 카드 스타일 (모드 선택) */
+.radio-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.radio-card {
+    display: flex;
+    align-items: flex-start;
+    padding: 16px 18px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    background-color: #fafbfc;
+    transition: all 0.2s ease;
+}
+
+.radio-card:hover {
+    border-color: #cbd5e1;
+    background-color: #ffffff;
+}
+
+.radio-card input[type="radio"] {
+    margin-top: 4px;
+    margin-right: 12px;
+    accent-color: var(--primary-color);
+}
+
+.radio-card.selected {
+    border-color: var(--primary-color);
+    background-color: var(--primary-light);
+}
+
+.radio-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #1e293b;
+    margin-bottom: 4px;
+}
+
+.radio-desc {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* 버튼 스타일 */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    text-decoration: none;
+}
+
+.btn-primary {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--text-inverse);
+    padding: 16px;
+    font-size: 1.08rem;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.35);
+}
+
+.btn-secondary {
+    background-color: #e2e8f0;
+    color: #334155;
+}
+
+.btn-secondary:hover {
+    background-color: #cbd5e1;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1.5px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+.btn-outline:hover {
+    background-color: #f1f5f9;
+    color: var(--text-primary);
+}
+
+.alert-error {
+    background-color: var(--danger-light);
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    margin-bottom: 20px;
+    font-size: 0.92rem;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   로딩 스피너 카드
+   ========================================================================== */
+.loading-card {
+    text-align: center;
+    padding: 50px 30px;
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 20px auto;
+    border: 4px solid #e2e8f0;
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 10px;
+}
+
+.loading-sub {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   진단 결과 섹션
+   ========================================================================== */
+.result-card {
+    background-color: #ffffff;
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 28px;
+}
+
+.result-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 8px 0 4px 0;
+}
+
+.result-date {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    background-color: #e0f2fe;
+    color: #0369a1;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 4px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* 결과 박스 공통 */
+.result-box {
+    background-color: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.box-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.box-header .icon {
+    font-size: 1.3rem;
+}
+
+.box-header h3 {
+    font-size: 1.18rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.box-desc {
+    font-size: 0.98rem;
+    color: #334155;
+    line-height: 1.7;
+}
+
+/* 오션 박스 (레드/블루/퍼플) */
+.ocean-box {
+    border-left: 6px solid var(--purple-color);
+}
+
+.ocean-tag {
+    margin-left: auto;
+    padding: 6px 14px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    border-radius: 9999px;
+    background-color: var(--purple-light);
+    color: var(--purple-color);
+}
+
+.ocean-red {
+    border-left-color: var(--danger-color);
+}
+.ocean-red .ocean-tag {
+    background-color: var(--danger-light);
+    color: var(--danger-color);
+}
+
+.ocean-blue {
+    border-left-color: var(--success-color);
+}
+.ocean-blue .ocean-tag {
+    background-color: var(--success-light);
+    color: var(--success-color);
+}
+
+/* 통계 메타 지표 그리드 */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.stat-card {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 18px;
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.stat-value {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 4px;
+}
+
+.stat-source {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* 2단 컬럼 배치 */
+.two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.column-item h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #334155;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1.5px solid #e2e8f0;
+}
+
+.column-item p {
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.6;
+}
+
+/* 투자 비용 박스 */
+.investment-summary {
+    background-color: #ffffff;
+    border: 1.5px dashed #cbd5e1;
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    font-size: 1.05rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.investment-summary strong {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+}
+
+.cost-breakdown h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #334155;
+    margin-bottom: 10px;
+}
+
+.styled-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.styled-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    font-size: 0.93rem;
+    color: #334155;
+}
+
+.styled-list li::before {
+    content: "•";
+    position: absolute;
+    left: 4px;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.opportunity-cost-box {
+    margin-top: 16px;
+    padding: 14px;
+    background-color: #ffffff;
+    border-radius: var(--radius-sm);
+    border-left: 4px solid var(--warning-color);
+    font-size: 0.92rem;
+}
+
+.opportunity-cost-box p {
+    margin-top: 4px;
+    color: #475569;
+}
+
+/* 체크리스트 */
+.checklist-items {
+    list-style: none;
+    padding-left: 0;
+}
+
+.checklist-items li {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px 14px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--radius-sm);
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #1e293b;
+}
+
+.checklist-items li::before {
+    content: "☑";
+    color: var(--success-color);
+    font-size: 1.1rem;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+/* 멘토 박스 */
+.mentor-box {
+    background-color: #fffbeb;
+    border-color: #fef3c7;
+    border-left: 6px solid var(--warning-color);
+}
+
+.mentor-box p {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #92400e;
+    line-height: 1.7;
+}
+
+/* 푸터 */
+.footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 40px;
+}
+
+/* 반응형 모바일 대응 */
+@media (max-width: 768px) {
+    .app-container {
+        padding: 24px 14px 60px 14px;
+    }
+    .form-row, .radio-cards, .two-columns, .stats-grid {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+    }
+    .result-header {
+        flex-direction: column;
+        gap: 16px;
+    }
+    .action-buttons {
+        width: 100%;
+    }
+    .action-buttons .btn {
+        flex: 1;
+    }
+}
