@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>보안 인증 - 청년 창업 체크리스트</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .login-wrapper {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-card {
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            padding: 40px 32px;
+        }
+        .lock-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+        .pin-input {
+            text-align: center;
+            font-size: 1.8rem;
+            letter-spacing: 12px;
+            font-weight: 700;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+        }
+        .session-info {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 18px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="login-wrapper">
+            <div class="card login-card">
+                <div class="lock-icon">🔒</div>
+                <div class="logo-badge">비공개 창업 진단 시스템</div>
+                <h1 class="card-title">보안 인증</h1>
+                <p class="card-desc">등록된 사용자만 접근할 수 있습니다.<br>4자리 보안 비밀번호를 입력해주세요.</p>
+
+                {% if error %}
+                <div class="alert alert-error">
+                    {{ error }}
+                </div>
+                {% endif %}
+
+                <form method="POST" action="{{ url_for('login') }}">
+                    <div class="form-group">
+                        <input 
+                            type="password" 
+                            name="pin" 
+                            id="pin" 
+                            class="form-control pin-input" 
+                            placeholder="••••" 
+                            maxlength="4" 
+                            pattern="[0-9]{4}" 
+                            inputmode="numeric" 
+                            required 
+                            autofocus 
+                            autocomplete="off"
+                        >
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-text">인증하고 입장하기</span>
+                    </button>
+                </form>
+
+                <p class="session-info">
+                    ※ 1회 인증 성공 시 동일 브라우저에서 <strong>24시간 동안</strong> 잠금 없이 유지되며, 24시간 후 자동으로 다시 잠깁니다.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

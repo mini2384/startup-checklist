@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -14,7 +14,10 @@
     <div class="app-container">
         <!-- 상단 헤더 -->
         <header class="header">
-            <div class="logo-badge">청년 창업 나침반</div>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 14px;">
+                <span class="logo-badge" style="margin-bottom: 0;">청년 창업 나침반</span>
+                <a href="{{ url_for('logout') }}" class="btn btn-outline" style="padding: 4px 10px; font-size: 0.8rem; border-radius: 9999px;" title="현재 세션을 종료하고 잠금 화면으로 돌아갑니다">🔒 화면 잠금</a>
+            </div>
             <h1 class="main-title">데이터 기반 창업 체크리스트 & 시장 진단</h1>
             <p class="subtitle">공공 데이터와 Gemini AI를 결합하여 관심 업종의 시장성, 리스크, 초기 자본 및 차별화 전략을 정밀 진단합니다.</p>
         </header>

@@ -1,9 +1,9 @@
-﻿import os
+import os
 import sys
 import json
 import logging
-from datetime import datetime
-from flask import Flask, render_template, request, jsonify
+from datetime import datetime, timedelta
+from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 from dotenv import load_dotenv
 import requests
 
@@ -21,7 +21,12 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "default-secret-key-change-in-env")
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "startup-checklist-security-key-2026")
+# 24시간 세션 유지 설정
+app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(hours=24)
+
+# 보안 PIN 비밀번호 설정 (기본값: 0927)
+ACCESS_PIN = os.getenv("ACCESS_PIN", "0927").strip()
 
 # 환경변수에서 API 키 확인
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "").strip()
@@ -131,6 +136,46 @@ def create_analysis_prompt(category, target_region, target_audience, analysis_mo
 }}
 """
     return prompt
+
+# 보안 미들웨어: 모든 접근에 대해 4자리 PIN 인증 여부 검사
+@app.before_request
+def require_pin():
+    # 정적 리소스(CSS, JS)와 로그인 관련 라우트는 인증 제외
+    if request.endpoint in ["login", "static"]:
+        return None
+    
+    # 미인증 상태인 경우 처리
+    if not session.get("authenticated"):
+        if request.path == "/analyze":
+            return jsonify({"success": False, "error": "보안 세션이 만료되었습니다. 다시 인증해주세요."}), 401
+        return redirect(url_for("login"))
+
+# 보안 로그인 (PIN 입력) 라우트
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if session.get("authenticated"):
+        return redirect(url_for("index"))
+    
+    error = None
+    if request.method == "POST":
+        entered_pin = request.form.get("pin", "").strip()
+        if entered_pin == ACCESS_PIN:
+            session.permanent = True  # 24시간 세션 유지 활성화
+            session["authenticated"] = True
+            logger.info("보안 PIN 인증 성공 -> 24시간 세션 발급")
+            return redirect(url_for("index"))
+        else:
+            logger.warning("보안 PIN 인증 실패: 비밀번호 불일치")
+            error = "비밀번호가 올바르지 않습니다. 다시 입력해주세요."
+            
+    return render_template("login.html", error=error)
+
+# 수동 잠금 (로그아웃) 라우트
+@app.route("/logout")
+def logout():
+    session.clear()
+    logger.info("화면 잠금 (로그아웃 완료)")
+    return redirect(url_for("login"))
 
 # 홈 화면 라우트
 @app.route("/")
